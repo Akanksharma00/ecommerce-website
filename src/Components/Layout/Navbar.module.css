@@ -1,0 +1,47 @@
+.navbar{
+    background-color: black;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: auto;
+    height: 50px;
+    z-index: 10;
+}
+
+.navbar__ul{
+    position: relative;
+    display: flex;
+    width:50%;
+    margin: auto;
+    top: 8px;
+}
+
+.navbar__list{
+    list-style: none;
+    position: relative;
+    margin:auto;
+    font-size: 26px;
+    color: white;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    font-family:'Times New Roman', Times, serif;
+}
+
+.cart-button{
+    background-color: black;
+    color: white;
+    float:right;
+    margin-top: -25px;
+    margin-right: 20px;
+    width: auto;
+    height: 35px;
+    font-size: 26px;
+    font-family: 'Times New Roman', Times, serif;
+    border: 1px solid aqua;
+    border-radius: 5px;
+}

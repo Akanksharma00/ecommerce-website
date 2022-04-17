@@ -1,0 +1,46 @@
+.footer{
+    background-color: rgb(70, 224, 254);
+    display: block;
+    position: relative;
+    left: 0;
+    width: 100%;
+    height: 100px;
+}
+
+.footer__logo{
+    /* background-color: black; */
+    display: block;
+    position:relative;
+    text-align: center;
+    width: 50%;
+    left:0;
+    float: left;
+}
+
+h1{
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 35px;
+}
+
+.footer__socialMedia-icons{
+    /* background-color: red; */
+    position: relative;
+    width: 50%;
+    margin: auto;
+    float: right;
+    top: 12px;
+}
+
+.footer__socialMedia-iconsList{
+    position: relative;
+    display: flex;
+}
+
+.footer__socialMedia-iconsList-li{
+    list-style: none;
+    position: relative;
+    margin:auto;
+    font-size: 26px;
+    color: white;
+}
