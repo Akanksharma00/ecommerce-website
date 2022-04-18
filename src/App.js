@@ -3,6 +3,7 @@ import React from 'react';
 import Navbar from './Components/Layout/Navbar';
 import Footer from './Components/Layout/Footer';
 import Header from './Components/Layout/Header';
+import Cart from './Components/Cart/Cart';
 import MusicSection from './Components/storeComponents/MusicSection';
 
 import './App.css';
@@ -11,10 +12,11 @@ import './App.css';
 function App() {
   return (
     <React.Fragment>
-      <Navbar />
+      {/* <Navbar /> */}
+      <Cart />
       <Header />
-      <MusicSection />
-      <Footer />
+      {/* <MusicSection /> */}
+      {/* <Footer /> */}
     </React.Fragment>
   );
 }
