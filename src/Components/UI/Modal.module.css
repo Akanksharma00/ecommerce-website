@@ -1,0 +1,13 @@
+.modalOverlay{
+    position: relative;
+    display: block;
+    z-index: 2;
+    background-color: white;
+    top: 70px;
+    float: right;
+}
+
+.modalContent{
+    position: relative;
+    display: block;
+}

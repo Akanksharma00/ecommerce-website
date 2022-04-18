@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Button from '../UI/Button';
+import HeaderCartButton from './HeaderCartButton';
 
 import style from './Navbar.module.css';
 
@@ -13,7 +13,7 @@ const Navbar = (props) => {
                 <li className={style['navbar__list']}><a href='#'>ABOUT</a></li>
             </ul>
             {/* <button className={style['cart-button']}>Cart</button> */}
-            <Button>cart</Button>
+            <HeaderCartButton onShowCart={props.onShowCart}/> 
         </div>
     );
 };

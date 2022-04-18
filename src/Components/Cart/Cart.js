@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../UI/Button';
+import Modal from '../UI/Modal';
 
 import style from './Cart.module.css';
 
@@ -26,10 +27,10 @@ const cartElements = [
     
 const Cart = (props) => {
     return(
-        <section className={style.cart}>
+        <Modal className={style.cart}>
             <div className={style['cart-head']}>
                 <h2>CART</h2>
-                <button className={style['cart-head__btn']}>X</button>
+                <button className={style['cart-head__btn']} onClick={props.onHideCart}>X</button>
             </div>
             <div>
                 <table>
@@ -59,7 +60,7 @@ const Cart = (props) => {
                     </tfoot>
                 </table>
             </div>
-        </section>
+        </Modal>
     );
 };
 
