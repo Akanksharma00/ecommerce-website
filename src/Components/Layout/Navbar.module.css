@@ -45,3 +45,7 @@ a{
     border: 1px solid aqua;
     border-radius: 5px;
 }
+
+.active{
+    border-bottom: 2px solid white;
+}

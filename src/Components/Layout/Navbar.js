@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 import HeaderCartButton from './HeaderCartButton';
 
@@ -10,13 +10,13 @@ const Navbar = (props) => {
         <div className={style.navbar}>
             <ul className={style['navbar__ul']}>
                 <li className={style['navbar__list']}>
-                    <Link to='#'>HOME</Link>
+                    <NavLink to='#'>HOME</NavLink>
                 </li>
                 <li className={style['navbar__list']}>
-                    <Link to='/dynamicStore'>STORE</Link>
+                    <NavLink activeClassName={style.active} to='/dynamicStore'>STORE</NavLink>
                 </li>
                 <li className={style['navbar__list']}>
-                    <Link to='/about'>ABOUT</Link>
+                    <NavLink activeClassName={style.active} to='/about'>ABOUT</NavLink>
                 </li>
             </ul>
             {/* <button className={style['cart-button']}>Cart</button> */}
