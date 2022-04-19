@@ -1,0 +1,22 @@
+.heading{
+    text-align: center;
+    font-size: 32px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.table{
+    position: relative;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    border-collapse: collapse;
+    margin-bottom: 100px;
+}
+
+.tableRow{
+    border-bottom: 1px solid black;
+}
+
+.tableCol{
+    border-bottom: 1px solid black;
+}

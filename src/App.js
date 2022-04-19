@@ -3,6 +3,7 @@ import {Route} from 'react-router-dom';
 
 import Store from './Pages/Store';
 import About from './Pages/About';
+import Home from './Pages/Home';
 
 import Header from './Components/Layout/Header';
 import Navbar from './Components/Layout/Navbar';
@@ -18,6 +19,7 @@ function App() {
       <Navbar />
       <Header/>
       <main>
+        <Route path="/index"><Home /></Route>
         <Route path="/dynamicStore"><Store /></Route>
         <Route path="/about"><About /></Route>
       </main>
