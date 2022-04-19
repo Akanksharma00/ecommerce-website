@@ -1,31 +1,26 @@
-import React,{useState} from 'react';
+import React from 'react';
+import {Route} from 'react-router-dom';
 
+import Store from './Pages/Store';
+import About from './Pages/About';
+
+import Header from './Components/Layout/Header';
 import Navbar from './Components/Layout/Navbar';
 import Footer from './Components/Layout/Footer';
-import Header from './Components/Layout/Header';
-import Cart from './Components/Cart/Cart';
-import MusicSection from './Components/storeComponents/MusicSection';
 
 import './App.css';
 
 
 function App() {
-  const [showModal, setShowModal] = useState(false);
-
-  const showCartHandler = () => {
-    setShowModal(true);
-  }; 
-
-  const hideCartHandler = () => {
-    setShowModal(false);
-  }
 
   return (
     <React.Fragment>
-      {showModal && <Cart onHideCart={hideCartHandler}/>}
-      <Navbar onShowCart={showCartHandler} />
+      <Navbar />
       <Header/>
-      <MusicSection />
+      <main>
+        <Route path="/dynamicStore"><Store /></Route>
+        <Route path="/about"><About /></Route>
+      </main>
       <Footer />
     </React.Fragment>
   );

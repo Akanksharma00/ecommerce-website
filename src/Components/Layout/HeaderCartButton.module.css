@@ -4,10 +4,15 @@
     font-size: 20px;
     font-family: 'Times New Roman', Times, serif;
     padding: 5px;
-    width: 50px;
+    width: fit-content;
     border-radius: 5px;
     border: none;
     background-color: aqua;
     top: -25px;
     right: 20px;
+}
+
+.badge{
+    color: red;
+    padding-left: 10px;
 }

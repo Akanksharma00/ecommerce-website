@@ -8,7 +8,7 @@ const Products = (props) =>{
                 <h2>{props.sectionName}</h2>
                 <div>
                     {props.data.map(i => (
-                        <ItemTile data={i}/>
+                        <ItemTile key={i.id} data={i}/>
                     ))}  
                 </div>
             </div>
