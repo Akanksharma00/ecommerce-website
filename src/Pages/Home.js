@@ -6,8 +6,10 @@ import style from './Home.module.css';
 
 const Home = (props) => {
     const [movies, setMovies] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     async function fetchMoviesHandler(){
+        setIsLoading(true);
         const response = await fetch('https://swapi.dev/api/films/')
         const data = await response.json();
 
@@ -20,13 +22,14 @@ const Home = (props) => {
             };
         });
         setMovies(transformedMovies);
+        setIsLoading(false);
     };
 
     return (
         <section>
             <button onClick={fetchMoviesHandler}>Fetch Movies</button>
             <h2 className={style.heading}>TOUR</h2>
-            <table className={style.table}>
+            {!isLoading && <table className={style.table}>
                 <tbody>
                 {movies.map(data => {
                     return (
@@ -38,7 +41,9 @@ const Home = (props) => {
                     </tr>)
                 })}
                 </tbody>
-            </table>
+            </table>}
+            {!isLoading && movies.length === 0 && <p>No movies found</p>}
+            {isLoading && <h2>{console.log('Loading')}Loading...</h2>}
         </section>
     );
 };
