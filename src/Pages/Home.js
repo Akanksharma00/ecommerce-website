@@ -1,6 +1,7 @@
 import React,{useState, useEffect, useCallback} from 'react';
 
 import Button from '../Components/UI/Button';
+import MovieForm from '../Components/HomeComponents/MovieForm';
 
 import style from './Home.module.css';
 
@@ -48,28 +49,33 @@ const Home = (props) => {
 
     return (
         <section>
-            <button onClick={fetchMoviesHandler}>Fetch Movies</button>
-            <h2 className={style.heading}>TOUR</h2>
-            {!isLoading && movies.length>0 && <table className={style.table}>
-                <tbody>
-                {movies.map(data => {
-                    return (
-                    <tr className={style.tableRow} key={data.id}>
-                        <td className={style.tableCol}>{data.date}</td>
-                        <td className={style.tableCol}>{data.title}</td>
-                        <td className={style.tableCol}>{data.directorName}</td>
-                        <td className={style.tableCol}><Button>BUY TICKETS</Button></td>
-                    </tr>)
-                })}
-                </tbody>
-            </table>}
-            {!isLoading && movies.length === 0 && !error && <p>No movies found</p>}
-            {!isLoading && error && <div>
-                <p>{error}</p>
-                <button  onClick={cancelBtnHandler}>Cancel</button>
-            </div>}
-            {isLoading && <h2>{console.log('Loading')}Loading...</h2>}
+            <MovieForm />
+            <div className={style.btnDiv}>
+                <button onClick={fetchMoviesHandler}>Fetch Movies</button>
+            </div>
             
+            <div>
+                <h2 className={style.heading}>TOUR</h2>
+                {!isLoading && movies.length>0 && <table className={style.table}>
+                    <tbody>
+                    {movies.map(data => {
+                        return (
+                        <tr className={style.tableRow} key={data.id}>
+                            <td className={style.tableCol}>{data.date}</td>
+                            <td className={style.tableCol}>{data.title}</td>
+                            <td className={style.tableCol}>{data.directorName}</td>
+                            <td className={style.tableCol}><Button>BUY TICKETS</Button></td>
+                        </tr>)
+                    })}
+                    </tbody>
+                </table>}
+                {!isLoading && movies.length === 0 && !error && <p>No movies found</p>}
+                {!isLoading && error && <div>
+                    <p>{error}</p>
+                    <button  onClick={cancelBtnHandler}>Cancel</button>
+                </div>}
+                {isLoading && <h2>{console.log('Loading')}Loading...</h2>}
+            </div>
         </section>
     );
 };
