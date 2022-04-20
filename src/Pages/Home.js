@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect, useCallback} from 'react';
 
 import Button from '../Components/UI/Button';
 
@@ -14,11 +14,11 @@ const Home = (props) => {
         setCancel(true);
     }
 
-    async function fetchMoviesHandler(){
+    const fetchMoviesHandler = useCallback(async () =>{
         setIsLoading(true);
         setError(null);
         try{
-            const response = await fetch('https://swapi.dev/api/films/')
+            const response = await fetch('https://swapi.dev/api/films/');
 
             if(!response.ok){
                 throw new Error('Something went wrong...Retrying');
@@ -38,11 +38,13 @@ const Home = (props) => {
         }catch(error){
             setError(error.message);
             setTimeout(()=>{
-                {!cancel && fetch('https://swapi.dev/api/film/');}
+                fetch('https://swapi.dev/api/films/');
             },5000); 
         }
         setIsLoading(false);
-    };
+    });
+
+    useEffect(() => {fetchMoviesHandler();},[]);
 
     return (
         <section>
