@@ -7,21 +7,40 @@ import style from './Home.module.css';
 const Home = (props) => {
     const [movies, setMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);  
+    const [cancel, setCancel] = useState(false);
+
+    const cancelBtnHandler = () => {
+        setCancel(true);
+    }
 
     async function fetchMoviesHandler(){
         setIsLoading(true);
-        const response = await fetch('https://swapi.dev/api/films/')
-        const data = await response.json();
+        setError(null);
+        try{
+            const response = await fetch('https://swapi.dev/api/films/')
 
-        const transformedMovies = data.results.map(movieData => {
-            return {
-                id: movieData.episode_id,
-                date: movieData.release_date,
-                title: movieData.title,
-                directorName : movieData.director,
-            };
-        });
-        setMovies(transformedMovies);
+            if(!response.ok){
+                throw new Error('Something went wrong...Retrying');
+            }
+
+            const data = await response.json();
+
+            const transformedMovies = data.results.map(movieData => {
+                return {
+                    id: movieData.episode_id,
+                    date: movieData.release_date,
+                    title: movieData.title,
+                    directorName : movieData.director,
+                };
+            });
+            setMovies(transformedMovies);
+        }catch(error){
+            setError(error.message);
+            setTimeout(()=>{
+                {!cancel && fetch('https://swapi.dev/api/film/');}
+            },5000); 
+        }
         setIsLoading(false);
     };
 
@@ -29,7 +48,7 @@ const Home = (props) => {
         <section>
             <button onClick={fetchMoviesHandler}>Fetch Movies</button>
             <h2 className={style.heading}>TOUR</h2>
-            {!isLoading && <table className={style.table}>
+            {!isLoading && movies.length>0 && <table className={style.table}>
                 <tbody>
                 {movies.map(data => {
                     return (
@@ -42,8 +61,13 @@ const Home = (props) => {
                 })}
                 </tbody>
             </table>}
-            {!isLoading && movies.length === 0 && <p>No movies found</p>}
+            {!isLoading && movies.length === 0 && !error && <p>No movies found</p>}
+            {!isLoading && error && <div>
+                <p>{error}</p>
+                <button  onClick={cancelBtnHandler}>Cancel</button>
+            </div>}
             {isLoading && <h2>{console.log('Loading')}Loading...</h2>}
+            
         </section>
     );
 };
