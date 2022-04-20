@@ -8,7 +8,7 @@ const Home = (props) => {
     const [movies, setMovies] = useState([]);
 
     async function fetchMoviesHandler(){
-        const respose = await fetch('https://swapi.dev/api/films/')
+        const response = await fetch('https://swapi.dev/api/films/')
         const data = await response.json();
 
         const transformedMovies = data.results.map(movieData => {
@@ -17,10 +17,9 @@ const Home = (props) => {
                 date: movieData.release_date,
                 title: movieData.title,
                 directorName : movieData.director,
-        };
-                
-                setMovies(transformedMovies);
-            });
+            };
+        });
+        setMovies(transformedMovies);
     };
 
     return (
@@ -28,15 +27,17 @@ const Home = (props) => {
             <button onClick={fetchMoviesHandler}>Fetch Movies</button>
             <h2 className={style.heading}>TOUR</h2>
             <table className={style.table}>
+                <tbody>
                 {movies.map(data => {
                     return (
-                    <tr className={style.tableRow}>
+                    <tr className={style.tableRow} key={data.id}>
                         <td className={style.tableCol}>{data.date}</td>
                         <td className={style.tableCol}>{data.title}</td>
                         <td className={style.tableCol}>{data.directorName}</td>
                         <td className={style.tableCol}><Button>BUY TICKETS</Button></td>
                     </tr>)
                 })}
+                </tbody>
             </table>
         </section>
     );
