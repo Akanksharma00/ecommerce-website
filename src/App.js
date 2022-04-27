@@ -29,11 +29,15 @@ function App() {
         <Switch>
           <Route path="/" exact><Redirect to='/dynamicStore'></Redirect></Route>
           <Route path="/index"><Home /></Route>
-          <Route path="/dynamicStore" exact><Store /></Route>
+          <Route path="/dynamicStore" exact>
+            {isLoggedIn && <Store />}
+            {!isLoggedIn && <Redirect to='/login' />}
+          </Route>
           <Route path='/dynamicStore/:id'><ProductDetail /></Route>
           <Route path="/about"><About /></Route>
           <Route path="/contact"><ContactUs /></Route>
-          <Route path="/login"><Login /></Route>
+          {!isLoggedIn && <Route path="/login"><Login /></Route>}
+          <Route path="*"><Redirect to='/login'/></Route>
         </Switch>
       </main>
       <Footer />

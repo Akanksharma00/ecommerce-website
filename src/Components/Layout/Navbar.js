@@ -1,12 +1,20 @@
-import React,{useState} from 'react';
+import React,{useState, useContext} from 'react';
 import {NavLink} from 'react-router-dom';
+import AuthContext from '../../store/auth-context';
 
 import HeaderCartButton from './HeaderCartButton';
 
 import style from './Navbar.module.css';
 
 const Navbar = (props) => {
+    const authCtx = useContext(AuthContext);
     const [showCartBtn, setShowCartBtn] = useState(true);
+
+    const isLoggedIn = authCtx.isLoggedIn;
+
+    const logoutHandler = () => {
+        authCtx.logout();
+    }
 
     const hideCartBtnHandler = () => {
         setShowCartBtn(false);
@@ -27,9 +35,12 @@ const Navbar = (props) => {
                 <li className={style['navbar__list']}>
                     <NavLink activeClassName={style.active} to='/contact' onClick={hideCartBtnHandler}>CONTACT US</NavLink>
                 </li>
-                <li className={style['navbar__list']}>
+                {!isLoggedIn && <li className={style['navbar__list']}>
                     <NavLink to='/login' >LOGIN</NavLink>
-                </li>
+                </li>}
+                {isLoggedIn && <li className={style['navbar__list']}>
+                    <button onClick={logoutHandler}>LOG OUT</button>
+                </li>}
             </ul>
             {/* <button className={style['cart-button']}>Cart</button> */}
             {showCartBtn && <HeaderCartButton onShowCart={props.onShowCart}/> }
