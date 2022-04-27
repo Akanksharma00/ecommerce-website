@@ -27,6 +27,9 @@ const Navbar = (props) => {
                 <li className={style['navbar__list']}>
                     <NavLink activeClassName={style.active} to='/contact' onClick={hideCartBtnHandler}>CONTACT US</NavLink>
                 </li>
+                <li className={style['navbar__list']}>
+                    <NavLink to='/login' >LOGIN</NavLink>
+                </li>
             </ul>
             {/* <button className={style['cart-button']}>Cart</button> */}
             {showCartBtn && <HeaderCartButton onShowCart={props.onShowCart}/> }

@@ -19,7 +19,7 @@ const Home = (props) => {
         setIsLoading(true);
         setError(null);
         try{
-            const response = await fetch('https://swapi.dev/api/films/');
+            const response = await fetch('https://ecommerce-website-3d5e2-default-rtdb.firebaseio.com/movies.json');
 
             if(!response.ok){
                 throw new Error('Something went wrong...Retrying');
@@ -27,15 +27,17 @@ const Home = (props) => {
 
             const data = await response.json();
 
-            const transformedMovies = data.results.map(movieData => {
-                return {
-                    id: movieData.episode_id,
-                    date: movieData.release_date,
-                    title: movieData.title,
-                    directorName : movieData.director,
-                };
-            });
-            setMovies(transformedMovies);
+            const loadedMovies = [];
+
+            for(const key in data){
+                loadedMovies.push({
+                    id: key,
+                    title: data[key].title,
+                    directorName: data[key].director,
+                    date: data[key].relDate
+                });
+            }
+            setMovies(loadedMovies);
         }catch(error){
             setError(error.message);
             setTimeout(()=>{
@@ -44,6 +46,10 @@ const Home = (props) => {
         }
         setIsLoading(false);
     });
+
+    const deleteMovie = (event) => {
+        console.log(event.target.key);
+    }
 
     useEffect(() => {fetchMoviesHandler();},[]);
 
@@ -65,6 +71,7 @@ const Home = (props) => {
                             <td className={style.tableCol}>{data.title}</td>
                             <td className={style.tableCol}>{data.directorName}</td>
                             <td className={style.tableCol}><Button>BUY TICKETS</Button></td>
+                            <td className={style.tableCol}><button onClick={deleteMovie}>Delete</button></td>
                         </tr>)
                     })}
                     </tbody>

@@ -1,0 +1,32 @@
+.imgSection{
+    position: fixed;
+    width:400px;
+}
+
+.imgSection__imgIcon{
+    left:0;
+    width: 100px;
+    background-color: red;
+}
+
+.imgSection__zoomImg{
+    background-color: green;
+    position: fixed;
+    left: 100px;
+    width: 250px;
+    background-color: rgb(234, 234, 234);
+}
+
+.imgSection__imgIcon-image{
+    width: 90px;
+    height: 90px;
+}
+
+.imgSection__imgList{
+    list-style-type: none;
+}
+
+.detailSection{
+    position: relative;
+    left:410px;
+}
