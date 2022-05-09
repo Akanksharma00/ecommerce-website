@@ -1,8 +1,6 @@
 import React,{useState} from 'react';
 
 import Navbar from '../Components/Layout/Navbar';
-import Footer from '../Components/Layout/Footer';
-import Header from '../Components/Layout/Header';
 import Cart from '../Components/Cart/Cart';
 import MusicSection from '../Components/storeComponents/MusicSection';
 import CartContextProvider from '../store/CartContextProvider';

@@ -1,5 +1,5 @@
 import React,{useState, useContext} from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, Redirect} from 'react-router-dom';
 import AuthContext from '../../store/auth-context';
 
 import HeaderCartButton from './HeaderCartButton';

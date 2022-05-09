@@ -3,6 +3,7 @@ import React,{useState} from 'react';
 import style from './MovieForm.module.css';
 
 const MovieForm = (props) => {
+    console.log(props);
     const [title, setTitle] = useState('');
     const [director, setDirector] = useState('');
     const [relDate, setRelDate] = useState('');
@@ -43,6 +44,9 @@ const MovieForm = (props) => {
         });
         const data = await response.json();
         console.log(data);
+        if(response.ok){
+            props.onAddMovie();
+        }
     }
 
     return(

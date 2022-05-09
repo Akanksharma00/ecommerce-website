@@ -47,15 +47,20 @@ const Home = (props) => {
         setIsLoading(false);
     });
 
-    const deleteMovie = (event) => {
-        console.log(event.target.key);
+    const deleteMovie = async (id) => {
+        const res = await fetch(`https://ecommerce-website-3d5e2-default-rtdb.firebaseio.com/movies/${id}.json`,{
+            method: 'DELETE'
+        });
+        if(res.ok){
+            fetchMoviesHandler();
+        }
     }
 
-    useEffect(() => {fetchMoviesHandler();},[]);
+    useEffect(() => {fetchMoviesHandler()},[]);
 
     return (
         <section>
-            <MovieForm />
+            <MovieForm addMovie={fetchMoviesHandler}/>
             <div className={style.btnDiv}>
                 <button onClick={fetchMoviesHandler}>Fetch Movies</button>
             </div>
@@ -71,7 +76,7 @@ const Home = (props) => {
                             <td className={style.tableCol}>{data.title}</td>
                             <td className={style.tableCol}>{data.directorName}</td>
                             <td className={style.tableCol}><Button>BUY TICKETS</Button></td>
-                            <td className={style.tableCol}><button onClick={deleteMovie}>Delete</button></td>
+                            <td className={style.tableCol}><button onClick={deleteMovie.bind(null,data.id)}>Delete</button></td>
                         </tr>)
                     })}
                     </tbody>

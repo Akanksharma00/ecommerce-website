@@ -29,6 +29,11 @@ import style from './Cart.module.css';
 const Cart = (props) => {
     const cartCtx = useContext(CartContext);
 
+    const removeHandler = (id) =>{
+        console.log(id);
+        cartCtx.removeItem(id);
+    }
+
     return(
         <Modal className={style.cart}>
             <div className={style['cart-head']}>
@@ -46,12 +51,14 @@ const Cart = (props) => {
                     </thead>
                     <tbody>
                         {cartCtx.items.map(cartElem => {
+                            console.log(cartElem);
+                            // const id = cartElem.id;
                             return <tr>
-                                <td><img src={cartElem.imageUrl} className={style['cart-body__image']}/>{cartElem.title}</td>
+                                <td><img src={cartElem.img} alt='product img' className={style['cart-body__image']}/>{cartElem.title}</td>
                                 <td>{cartElem.price}</td>
                                 <td>
                                     {cartElem.quantity}
-                                    <Button>Remove</Button>
+                                    <button onClick={removeHandler.bind(null,cartElem.id)}>Remove</button>
                                 </td>
                             </tr>
                         })}
